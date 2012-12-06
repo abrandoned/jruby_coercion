@@ -58,3 +58,5 @@ module Jruby
     end
   end
 end
+
+require 'jruby-coercion/numeric'
