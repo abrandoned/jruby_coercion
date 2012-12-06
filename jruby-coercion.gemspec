@@ -7,9 +7,9 @@ Gem::Specification.new do |gem|
   gem.name          = "jruby-coercion"
   gem.version       = Jruby::Coercion::VERSION
   gem.authors       = ["Brandon Dewitt"]
-  gem.email         = ["brandonsdewitt@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["brandonsdewitt+jrubycoercion@gmail.com"]
+  gem.description   = %q{ gem to facilitate automatic coercion between jruby/java objects }
+  gem.summary       = %q{ helps coerce ruby objects into java type automatically }
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
