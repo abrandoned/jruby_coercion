@@ -11,7 +11,7 @@ module Jruby
         converter = ::Jruby::Coercion::Registry.registry_converts_class_and_to?(self.class, java_type)
 
         if converter
-          return converter.call(self)
+          return converter.call(self, java_type)
         else
           super
         end
