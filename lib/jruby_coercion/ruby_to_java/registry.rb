@@ -1,8 +1,8 @@
-require 'jruby-coercion/registry'
+require 'jruby_coercion/registry'
 
-module ::Jruby::Coercion::RubyToJava
+module ::JrubyCoercion::RubyToJava
 
-  class Registry < ::Jruby::Coercion::Registry
+  class Registry < ::JrubyCoercion::Registry
 
     DEFAULT_CONVERTER = lambda { |val| val.jruby_default_to_java }
 
@@ -12,7 +12,7 @@ module ::Jruby::Coercion::RubyToJava
     #
     def self.new_registry_entry_for_type(from_type)
       new_type_registry = Java::JavaUtilConcurrent::ConcurrentHashMap.new
-      new_type_registry[::Jruby::Coercion::Registry::DEFAULT_KEY] = DEFAULT_CONVERTER
+      new_type_registry[::JrubyCoercion::Registry::DEFAULT_KEY] = DEFAULT_CONVERTER
 
       return new_type_registry
     end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'bigdecimal'
-require 'jruby-coercion/numeric'
+require 'jruby_coercion/numeric'
 
 describe Java::JavaMath::BigDecimal do 
   context "Numeric" do
