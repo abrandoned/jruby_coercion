@@ -2,16 +2,18 @@ module JrubyCoercion
   module Coercable
 
     def self.included(klass)
-      klass.class_eval do 
-        alias_method :jruby_default_to_java, :to_java
+      unless klass.method_defined?(:jruby_default_to_java)
+        klass.class_eval do 
+          alias_method :jruby_default_to_java, :to_java
 
-        def to_java(java_type = nil)
-          converter = ::JrubyCoercion::Registry.registry_converts_class_and_to?(self.class, java_type)
+          def to_java(java_type = nil)
+            converter = ::JrubyCoercion::Registry.registry_converts_class_and_to?(self.class, java_type)
 
-          if converter
-            return converter.call(self)
-          else
-            jruby_default_to_java(java_type)
+            if converter
+              return converter.call(self)
+            else
+              jruby_default_to_java(java_type)
+            end
           end
         end
       end
