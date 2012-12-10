@@ -17,12 +17,15 @@ module JrubyCoercion
               jruby_default_to_java(java_type)
             end
           end
+
+
+          def coerce_to?(java_type)
+            return ::JrubyCoercion::RubyToJava::Registry.registry_converts_class_and_to?(self.class, java_type)
+          end
+          alias_method :coerced_to?, :coerce_to?
+
         end
       end
-    end
-
-    def coerce_to?(java_type)
-      return ::JrubyCoercion::RubyToJava::Registry.registry_converts_class_and_to?(self.class, java_type)
     end
 
   end

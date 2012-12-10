@@ -21,7 +21,7 @@ module JrubyCoercion
     # Public Instance Methods
     #
     def to_ary
-      [ !@converter.nil?, @converter ]        
+      [ self, @converter ]        
     end
 
     alias_method :coerce, :call
