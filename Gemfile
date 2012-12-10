@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in jruby-coercion.gemspec
+# Specify your gem's dependencies in jruby_coercion.gemspec
 gemspec

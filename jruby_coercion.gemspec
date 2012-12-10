@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'jruby-coercion/version'
+require 'jruby_coercion/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "jruby-coercion"
-  gem.version       = Jruby::Coercion::VERSION
+  gem.name          = "jruby_coercion"
+  gem.version       = JrubyCoercion::VERSION
   gem.authors       = ["Brandon Dewitt"]
   gem.email         = ["brandonsdewitt+jrubycoercion@gmail.com"]
   gem.description   = %q{ gem to facilitate automatic coercion between jruby/java objects }
