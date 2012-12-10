@@ -1,3 +1,5 @@
+require 'jruby_coercion/ruby_to_java/registry'
+
 module JrubyCoercion
   module Coercable
 
@@ -7,7 +9,7 @@ module JrubyCoercion
           alias_method :jruby_default_to_java, :to_java
 
           def to_java(java_type = nil)
-            converter = ::JrubyCoercion::Registry.registry_converts_class_and_to?(self.class, java_type)
+            converter = ::JrubyCoercion::RubyToJava::Registry.registry_converts_class_and_to?(self.class, java_type)
 
             if converter
               return converter.call(self)
@@ -20,7 +22,7 @@ module JrubyCoercion
     end
 
     def coerce_to?(java_type)
-      return ::JrubyCoercion::Registry.registry_converts_class_and_to?(self.class, java_type)
+      return ::JrubyCoercion::RubyToJava::Registry.registry_converts_class_and_to?(self.class, java_type)
     end
 
   end

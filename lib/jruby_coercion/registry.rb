@@ -1,14 +1,10 @@
 require 'thread'
 require 'jruby_coercion'
+require 'jruby_coercion/converter'
 
 class ::JrubyCoercion::Registry
-  class << self
-    attr_reader :converter_registry
-  end
 
   DEFAULT_KEY = "JRUBY_COERCION_DEFAULT".freeze
-
-  @converter_registry ||= Java::JavaUtilConcurrent::ConcurrentHashMap.new
 
   ##
   # Class Methods
@@ -21,22 +17,26 @@ class ::JrubyCoercion::Registry
     end
   end
 
+  def self.converter_registry
+    @converter_registry ||= Java::JavaUtilConcurrent::ConcurrentHashMap.new
+  end
+
   def self.new_registry_entry_for_type(from_type)
     raise "new_registry_entry_for_type must be overridden in child classes"
   end
 
   def self.register_converter(from_type, to_type, callable = nil, &blk)
-    Thread.exclusive do 
+    Thread.exclusive do
       callable ||= blk
       to_type ||= DEFAULT_KEY
 
-      from_type_converter = (@converter_registry[from_type] ||= new_registry_entry_for_type(from_type))
+      from_type_converter = (converter_registry[from_type] ||= new_registry_entry_for_type(from_type))
 
       from_type_converter[to_type] = callable
       # Register alternative type java_class/ruby_class
       from_type_converter[self.alternative_class(to_type)] = callable unless to_type == DEFAULT_KEY
 
-      @converter_registry[from_type] = from_type_converter
+      converter_registry[from_type] = from_type_converter
     end
   end
 
@@ -50,6 +50,7 @@ class ::JrubyCoercion::Registry
 
   def self.registry_converts_class_and_to?(from_type, to_type)
     if (class_level = registry_converts_class?(from_type))
+      to_type ||= DEFAULT_KEY
       return ::JrubyCoercion::Converter.new(class_level[to_type])
     else
       return ::JrubyCoercion::Converter.new(false)

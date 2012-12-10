@@ -1,6 +1,6 @@
 require "java"
 require "jruby_coercion/version"
-require "jruby_coercion/ruby_to_java_converter"
+require "jruby_coercion/converter"
 
 module JrubyCoercion
 

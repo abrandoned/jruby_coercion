@@ -1,4 +1,6 @@
 require 'jruby_coercion'
+require 'jruby_coercion/coercable'
+require 'jruby_coercion/ruby_to_java/registry'
 
 class Numeric
   include ::JrubyCoercion::Coercable
