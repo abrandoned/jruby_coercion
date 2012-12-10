@@ -1,5 +1,3 @@
-module Jruby
-  module Coercion
+module JrubyCoercion
     VERSION = "0.0.2"
-  end
 end
