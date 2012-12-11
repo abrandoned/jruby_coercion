@@ -31,6 +31,9 @@ module ::JrubyCoercion::RubyToJava
         new_type_registry[mapped_to] = DEFAULT_CONVERTER
       end
 
+      # Class should include Coercable
+      from_type.__send__(:include, ::JrubyCoercion::Coercable)
+
       return new_type_registry
     end
   end
@@ -39,8 +42,6 @@ end
 
 # Setup default mappings for jruby
 ::JrubyCoercion::RubyToJava::Registry::DEFAULT_TYPE_MAP.each do |ruby_type, java_type|
-  ruby_type.__send__(:include, ::JrubyCoercion::Coercable)
-
   ::JrubyCoercion::RubyToJava::Registry.register_converter(ruby_type, 
                                                            java_type, 
                                                            ::JrubyCoercion::RubyToJava::Registry::DEFAULT_CONVERTER)
