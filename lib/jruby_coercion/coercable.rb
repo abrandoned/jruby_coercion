@@ -1,5 +1,3 @@
-require 'jruby_coercion/ruby_to_java/registry'
-
 module JrubyCoercion
   module Coercable
 

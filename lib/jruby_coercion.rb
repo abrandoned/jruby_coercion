@@ -1,6 +1,7 @@
 require "java"
 require "jruby_coercion/version"
 require "jruby_coercion/converter"
+require "jruby_coercion/coercable"
 
 module JrubyCoercion
 
@@ -14,4 +15,5 @@ module JrubyCoercion
 
 end
 
-require 'jruby_coercion/numeric'
+require "jruby_coercion/ruby_to_java/registry"
+require "jruby_coercion/numeric"
