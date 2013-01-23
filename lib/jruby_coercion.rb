@@ -17,3 +17,4 @@ end
 
 require "jruby_coercion/ruby_to_java/registry"
 require "jruby_coercion/numeric"
+require "jruby_coercion/string"
