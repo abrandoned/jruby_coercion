@@ -4,6 +4,7 @@ require 'jruby_coercion/converter'
 
 class ::JrubyCoercion::Registry
 
+  REGISTRY_MUTEX = ::Mutex.new
   DEFAULT_KEY = "JRUBY_COERCION_DEFAULT".freeze
 
   ##
@@ -26,7 +27,7 @@ class ::JrubyCoercion::Registry
   end
 
   def self.register_converter(from_type, to_type, callable = nil, &blk)
-    Thread.exclusive do
+    REGISTRY_MUTEX.synchronize do
       callable ||= blk
       to_type ||= DEFAULT_KEY
 
