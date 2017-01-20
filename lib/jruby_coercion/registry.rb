@@ -26,7 +26,7 @@ class ::JrubyCoercion::Registry
   end
 
   def self.register_converter(from_type, to_type, callable = nil, &blk)
-    Thread.exclusive do
+    Mutex.new.synchronize do
       callable ||= blk
       to_type ||= DEFAULT_KEY
 
